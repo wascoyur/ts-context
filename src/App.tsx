@@ -20,6 +20,7 @@ function App() {
          setIsLoading(false);
        });
    }, [setPosts]);
+
 const removePost = useCallback(
   (postId: number) => {
     setIsLoading(true);
@@ -42,12 +43,17 @@ const removePost = useCallback(
   },
   [setPosts, posts],
 );
-  return (
-    <PostsContext.Provider value={postsContextDefaultValue}>
-      <div className='App'>App</div>
-      <PostsList />
-    </PostsContext.Provider>
-  );
+return (
+  <PostsContext.Provider
+    value={{
+      posts,
+      isLoading,
+      fetchPosts,
+      removePost,
+    }}>
+    <PostsList />
+  </PostsContext.Provider>
+);
 }
 
 export default App;
