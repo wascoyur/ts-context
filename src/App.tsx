@@ -1,13 +1,13 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useContext } from 'react';
 import './App.css';
-import ThemedButton from './context/themed-button';
+import AppCtx from './context/AppCtx';
 
 function App() {
+  const context: unknown = useContext(AppCtx);
   return (
-    <div className='App'>
-      <ThemedButton />
-    </div>
+    <AppCtx>
+      <div className='App'>App</div>
+    </AppCtx>
   );
 }
 
