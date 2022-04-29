@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { Todo } from '../types/Todo';
 import { TodoContext } from './ContextCreator';
 
-const ContextProvider: JSX.Element = () => {
+export default function ContextProvider(): JSX.Element {
   const [todos, setTodos] = useState<Todo[]>([]);
 
   const addTodo = useCallback(
@@ -14,6 +14,7 @@ const ContextProvider: JSX.Element = () => {
     (todoId: number) => setTodos(todos.filter((t) => t.id !== todoId)),
     [todos],
   );
+
   return (
     <TodoContext.Provider
       value={{
@@ -22,9 +23,8 @@ const ContextProvider: JSX.Element = () => {
         clearTodos,
         todos,
       }}>
-      ContextProvider
+      sads
+      <div>some child text</div>
     </TodoContext.Provider>
   );
-};
-
-export default ContextProvider;
+}
