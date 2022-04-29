@@ -1,4 +1,5 @@
 import React from 'react';
+import { Todo } from '../types/Todo';
 
 interface TodosContextProps {
   addTodo: (newTodo: Todo) => void;
