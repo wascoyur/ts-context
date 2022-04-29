@@ -1,8 +1,16 @@
-import React, { FC, useState } from 'react';
+import React, {
+  FC,
+  PropsWithChildren,
+  ReactElement,
+  useState,
+  ValidationMap,
+  WeakValidationMap,
+} from 'react';
 import { ITodo, TodoContextType } from '../types/types';
 
 export const TodoContext = React.createContext<TodoContextType | null>(null);
-export const TodoProvider: FC<React.ReactNode> = () => {
+
+export const TodoProvider: FC = ({ children }: any | unknown | null) => {
   const [todos, setTodos] = useState<ITodo[]>([
     {
       id: 1,
@@ -34,5 +42,9 @@ export const TodoProvider: FC<React.ReactNode> = () => {
       }
     });
   };
-  return null;
+  return (
+    <TodoContext.Provider value={{ todos, saveTodo, updateTodo }}>
+      {children}
+    </TodoContext.Provider>
+  );
 };
