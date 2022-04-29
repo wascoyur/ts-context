@@ -20,7 +20,28 @@ function App() {
          setIsLoading(false);
        });
    }, [setPosts]);
-
+const removePost = useCallback(
+  (postId: number) => {
+    setIsLoading(true);
+    fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`, {
+      method: 'DELETE',
+    })
+      .then(() => {
+        const newPosts = [...posts];
+        const removedPostIndex = newPosts.findIndex(
+          (post) => post.id === postId,
+        );
+        if (removedPostIndex > -1) {
+          newPosts.splice(removedPostIndex, 1);
+        }
+        setPosts(newPosts);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  },
+  [setPosts, posts],
+);
   return (
     <PostsContext.Provider value={postsContextDefaultValue}>
       <div className='App'>App</div>
